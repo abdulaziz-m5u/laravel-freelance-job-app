@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Country;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
@@ -30,8 +31,9 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('title', 'id');
+        $countries = Country::all()->pluck('name', 'id');
 
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('roles', 'countries'));
     }
 
     /**
@@ -58,7 +60,9 @@ class UserController extends Controller
     {
         $roles = Role::pluck('title', 'id');
 
-        return view('admin.users.edit', compact('user','roles'));
+        $countries = Country::with('country')->pluck('name', 'id');
+
+        return view('admin.users.edit', compact('user','roles', 'countries'));
     }
 
     /**

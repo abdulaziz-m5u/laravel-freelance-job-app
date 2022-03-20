@@ -18,6 +18,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            @can('user_management_access')
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <span>{{ __('User Management') }}</span>
@@ -30,6 +31,31 @@
                     </div>
                 </div>
             </li>
+            @endcan
+
+            @can('country_access')
+            <li class="nav-item {{ request()->is('admin/countries') || request()->is('admin/countries/*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.countries.index') }}">
+                    <span>{{ __('Country') }}</span>
+                </a>
+            </li>
+            @endcan
+
+            @can('job_access')
+            <li class="nav-item {{ request()->is('admin/jobs') || request()->is('admin/jobs/*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.jobs.index') }}">
+                    <span>{{ __('Job') }}</span>
+                </a>
+            </li>
+            @endcan
+
+            @can('proposal_access')
+            <li class="nav-item {{ request()->is('admin/proposals') || request()->is('admin/proposals/*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.proposals.index') }}">
+                    <span>{{ __('Proposal') }}</span>
+                </a>
+            </li>
+            @endcan
 
 
         </ul>

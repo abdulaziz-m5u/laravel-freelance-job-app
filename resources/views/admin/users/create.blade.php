@@ -37,12 +37,24 @@
                         <input type="text" class="form-control" id="password" placeholder="{{ __('Password') }}" name="password" value="{{ old('password') }}" required />
                     </div>
                     <div class="form-group">
+                        <label for="country">{{ __('Country') }}</label>
+                        <select name="country_id" id="country" class="form-control select2" required>
+                            @foreach($countries as $id => $country)
+                                <option value="{{ $id }}" >{{ $country }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="roles">{{ __('Role') }}</label>
                         <select name="roles[]" id="roles" class="form-control select2" multiple="multiple" required>
                             @foreach($roles as $id => $roles)
                                 <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($role) && $role->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="about">{{ __('About') }}</label>
+                        <textarea name="about" rows="3" class="form-control">{{ old('about') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Save') }}</button>
                 </form>

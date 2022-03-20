@@ -11,6 +11,15 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        <div class="row justify-content-center my-2 mb-4">
+                            <div class="col-md-6" >
+                                <input type="radio" name="role_id" value="2" checked>
+                                Employer
+                                <input class="ms-3" type="radio" name="role_id" value="3">
+                                Candidate
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -61,6 +70,23 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Country') }}</label>
+                            <div class="col-md-6">
+                                <select name="country_id" class="form-control">
+                                    @foreach ($countries as $id => $country)
+                                        <option value="{{ $id }}">{{ $country }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('About') }}</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" name="about" placeholder="About me" rows="5"></textarea>
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -68,6 +94,7 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

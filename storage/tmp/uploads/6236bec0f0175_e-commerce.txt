@@ -1,0 +1,11 @@
+#products
+ [] title
+ [] price
+ [] description
+ [] details
+ [] quantity
+ [] status
+
+########
+# review product
+# checkout process

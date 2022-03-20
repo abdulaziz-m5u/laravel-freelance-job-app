@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'country_id',
+        'about'
     ];
 
     /**
@@ -44,5 +46,19 @@ class User extends Authenticatable
 
     public function roles() {
         return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
+    public function isEmployer()
+    {
+        return $this->roles()->where('role_id', 2)->count() > 0;
+    }
+
+    public function isCandidate()
+    {
+        return $this->roles()->where('role_id', 3)->count() > 0;
     }
 }

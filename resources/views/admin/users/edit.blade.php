@@ -38,12 +38,25 @@
                         <input type="text" class="form-control" id="password" placeholder="{{ __('Password') }}" name="password" value="{{ old('password',  $user->password) }}" />
                     </div>
                     <div class="form-group">
+                        <label for="country">{{ __('Country') }}</label>
+                        <select name="country_id" id="country" class="form-control select2" required>
+                        <option value="">{{ $user->country_id }}</option>
+                            @foreach($countries as $id => $country)
+                                <option value="{{ $id }}" {{ (isset($user) && $user->country ? $user->country->id : old('country_id')) == $id ? 'selected' : '' }}>{{ $country }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="roles">{{ __('Role') }}</label>
                         <select name="roles[]" id="roles" class="form-control select2" multiple="multiple" required>
                             @foreach($roles as $id => $roles)
                                 <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($user) && $user->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="about">{{ __('About') }}</label>
+                        <textarea name="about" rows="3" class="form-control">{{ old('about', $user->about) }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Save')}}</button>
                 </form>

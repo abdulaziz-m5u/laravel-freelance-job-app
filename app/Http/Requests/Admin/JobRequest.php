@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class JobRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,18 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => [
+            'title'         => [
                 'required',
             ],
-            'email'   => [
+            'description'   => [
                 'required',
-                'unique:users,email,' . request()->route('user')->id,
             ],
-            'country_id'    => ['required', 'integer'],
-            'about'    => ['nullable'],
-            'roles.*' => [
-                'integer',
-            ],
-            'roles'   => [
+            'budget'        => [
                 'required',
-                'array',
+            ],
+            'delivery_date' => [
+                'date_format:' . 'Y-m-d',
+                'nullable',
             ],
         ];
     }
