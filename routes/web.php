@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('auth.login');
 });
 
 Route::group(['middleware' => 'auth','prefix' => 'admin', 'as' => 'admin.'], function() {
@@ -36,6 +36,3 @@ Route::group(['middleware' => 'auth','prefix' => 'admin', 'as' => 'admin.'], fun
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home');
